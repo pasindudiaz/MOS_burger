@@ -18,7 +18,6 @@
         }
     </style>
 </head>
-
 <body class="d-flex justify-content-center align-items-center vh-100 bg-success">
     <div class="card text-center bg-success-subtle p-4 w-50 border-black">
         <div class="card-body">
@@ -70,67 +69,31 @@
             <!-- Item Quantity -->
             <div class="d-flex align-items-center mb-3">
                 <div style="width: 150px;" class="me-3 text-end">Item Quantity</div>
-                <input type="number" class="form-control w-50">
+                <input type="number" class="form-control w-50" id="quantityfield">
             </div>
 
             <!-- Price Per Item -->
             <div class="d-flex align-items-center mb-3">
                 <div style="width: 150px;" class="me-3 text-end">Price per Item</div>
-                <input type="number" class="form-control w-50">
+                <input type="number" class="form-control w-50" id="pricefield">
             </div>
 
             <!-- Discount Per Item -->
             <div class="d-flex align-items-center mb-3">
                 <div style="width: 150px;" class="me-3 text-end">Discount per Item</div>
-                <input type="number" class="form-control w-50">
+                <input type="number" class="form-control w-50" id="discountfield">
             </div>
 
             <!-- Expire Date -->
             <div class="d-flex align-items-center mb-3">
                 <div style="width: 150px;" class="me-3 text-end">Expire Date</div>
-                <input type="date" class="form-control w-50">
+                <input type="date" class="form-control w-50" id="expirefield">
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-sm">ADD</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="additem()">ADD</button>
     </div>
 
-    <script>
-        let itemNames = ["Classic Burger (Large)", "Classic Burger (Regular)", "Turkey Burger", "Chicken Burger (Large)", "Chicken Burger (Regular)", "Cheese Burger (Large)", "Cheese Burger (Regular)", "Bacon Burger", "Shawarma Burger", "Olive Burger", "Double-Cheese Burger", "Crispy Chicken Burger (Regular)", "Crispy Chicken Burger (Large)", "Paneer Burger", "Crispy Chicken Submarine (Large)", "Crispy Chicken Submarine (Regular)", "Chicken Submarine (Large)", "Chicken Submarine (Regular)", "Grinder Submarine", "Cheese Submarine", "Double Cheese n Chicken Submarine", "Special Horgie Submarine", "MOS Special Submarine", "Steak Fries (Large)", "Steak Fries (Medium)", "French Fries (Large)", "French Fries (Medium)", "French Fries (Small)", "Sweet Potato Fries (Large)", "Chicken n Cheese Pasta", "Chicken Penne Pasta", "Ground Turkey Pasta Bake", "Creamy Shrimp Pasta", "Lemon Butter Pasta", "Tagliatelle Pasta", "Baked Ravioli", "Fried Chicken (Small)", "Fried Chicken (Regular)", "Fried Chicken (Large)", "Hot Wings (Large)", "Devilled Chicken (Large)", "BBQ Chicken (Regular)", "Pepsi (330ml)", "Coca-Cola (330ml)", "Sprite (330ml)", "Mirinda (330ml)"];
-        let itemCodes = [
-            "B1001", "B1002", "B1003", "B1004", "B1005", "B1006", "B1007", "B1008", "B1009", "B1010",
-            "B1012", "B1013", "B1014", "B1015", "B1016", "B1017", "B1018", "B1019", "B1020", "B1021",
-            "B1022", "B1023", "B1024", "B1025", "B1026", "B1027", "B1028", "B1029", "B1030", "B1031",
-            "B1032", "B1033", "B1034", "B1035", "B1036", "B1037", "B1038", "B1039", "B1040", "B1041",
-            "B1042", "B1043", "B1044", "B1045", "B1046", "B1047"
-        ];
-
-        function selectCategory(item) {
-            document.getElementById("categoryBtn").innerText = item;
-        }
-
-        function loaditems() {
-            let body = ``;
-            itemNames.forEach(element => {
-                body = body + `<li><a class="dropdown-item" href="#" onclick="selectname('${element}')">${element}</a></li>`;
-            });
-            document.getElementById("dropdownitems").innerHTML = body;
-        }
-
-        function selectname(name) {
-            document.getElementById("nameBtn").innerText = name;
-        }
-
-        function loadcodes() {
-            let body2 = ``;
-            itemCodes.forEach(element => {
-                body2 = body2 + `<li><a class="dropdown-item" href="#" onclick="selectcode('${element}')">${element}</a></li>`;
-            });
-            document.getElementById("dropdowncode2").innerHTML = body2;
-        }
-        function selectcode(item){
-            document.getElementById("nameBtn2").innerText=item;
-        }
-    </script>
+    <script src="/js/add.js"></script>
 </body>
 
 </html>
