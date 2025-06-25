@@ -4,17 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vito’s Burger</title>
-    <link rel="icon" href="img/burger.png" type="image/png">
+    <title>Delete items</title>
+    <link rel="icon" href="/img/burger.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+        <style>
+            .scrollable-dropdown {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+        </style>
 </head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-success">
+    <div class="card text-center bg-success-subtle p-4 w-50 border-black">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Item Code</div>
+                <div class="dropdown w-50">
+                    <button class="btn btn-primary dropdown-toggle w-100 text-end" type="button" id="nameBtn2"
+                        data-bs-toggle="dropdown" aria-expanded="false" onclick="loadcodes()" >
+                    </button>
+                    <ul class="dropdown-menu scrollable-dropdown" id="dropdowncode2">
+                    </ul>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm mt-3 p-2 w-25" onclick="deleteitem()">DELETE</button>
+        </div>
+    </div>
 
-<body>
+    <script>
+        let itemCodes = [
+                "B1001", "B1002", "B1003", "B1004", "B1005", "B1006", "B1007", "B1008", "B1009", "B1010",
+                "B1012", "B1013", "B1014", "B1015", "B1016", "B1017", "B1018", "B1019", "B1020", "B1021",
+                "B1022", "B1023", "B1024", "B1025", "B1026", "B1027", "B1028", "B1029", "B1030", "B1031",
+                "B1032", "B1033", "B1034", "B1035", "B1036", "B1037", "B1038", "B1039", "B1040", "B1041",
+                "B1042", "B1043", "B1044", "B1045", "B1046", "B1047"
+            ];
+        function loadcodes() {
+                let body2 = ``;
+                itemCodes.forEach(element => {
+                    body2 = body2 + `<li><a class="dropdown-item" href="#" onclick="selectcode('${element}')">${element}</a></li>`;
+                });
+                document.getElementById("dropdowncode2").innerHTML = body2;
+            }
+            function selectcode(item) {
+                document.getElementById("nameBtn2").innerText = item;
+            }
 
-    <script src="app.js"></script>
+
+
+            function deleteitem(){
+                let itemdetails = JSON.parse(localStorage.getItem("itemdetails"));
+                let com = document.getElementById("nameBtn2").innerText;
+                console.log(com);
+                itemdetails = itemdetails.filter(element => element.itemcode !== com);
+
+                console.log(itemdetails);
+                localStorage.setItem("itemdetails", JSON.stringify(itemdetails));
+
+                
+
+            }
+    </script>
 </body>
 </html>
