@@ -4,16 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vito’s Burger</title>
-    <link rel="icon" href="img/burger.png" type="image/png">
+    <title>Update items</title>
+    <link rel="icon" href="/img/burger.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+        <style>
+            .scrollable-dropdown {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+        
+            </style>
 </head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-success">
+    <div class="card text-center bg-success-subtle p-4 w-50 border-black">
+        <div class="card-body">
+            <!-- Item Code -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Item Code</div>
+                <div class="dropdown w-50">
+                    <button class="btn btn-primary dropdown-toggle w-100 text-end" type="button" id="nameBtn2"
+                        data-bs-toggle="dropdown" aria-expanded="false" onclick="loadcodes()">
+                        Select Code
+                    </button>
+                    <ul class="dropdown-menu scrollable-dropdown" id="dropdowncode2">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-header mb-5">
+                It is mandatory to enter the item code to update the textfield you need.    
+            </div>
 
-<body>
-<script src="app.js"></script>
+            <!-- Item Category -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Item Category</div>
+                <div class="dropdown w-50">
+                    <button class="btn btn-primary dropdown-toggle w-100 text-end" type="button" id="categoryBtn"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Burger')">Burgers</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Submarine')">Submarines</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Fries')">Fries</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Pasta')">Pasta</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Chicken')">Chicken</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="selectCategory('Beverages')">Beverages</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item Name -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Item Name</div>
+                <div class="dropdown w-50">
+                    <button class="btn btn-primary dropdown-toggle w-100 text-end" type="button" id="nameBtn"
+                        data-bs-toggle="dropdown" aria-expanded="false" onclick="loaditems()">
+                    </button>
+                    <ul class="dropdown-menu scrollable-dropdown" id="dropdownitems">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item Quantity -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Item Quantity</div>
+                <input type="number" class="form-control w-50" id="quantityfield">
+            </div>
+
+            <!-- Price Per Item -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Price per Item</div>
+                <input type="number" class="form-control w-50" id="pricefield">
+            </div>
+
+            <!-- Discount Per Item -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Discount per Item</div>
+                <input type="number" class="form-control w-50" id="discountfield">
+            </div>
+
+            <!-- Expire Date -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Expire Date</div>
+                <input type="date" class="form-control w-50" id="expirefield">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" onclick="updateitem()">UPDATE</button>
+    </div>
+<script src="/js/update.js"></script>
 </body>
 </html>
