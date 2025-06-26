@@ -43,7 +43,7 @@ function selectcode(item) {
     document.getElementById("nameBtn2").innerText = item;
 }
 
-let itemdetails = JSON.parse(localStorage.getItem("itemdetails")) || [];
+let itemdetails = JSON.parse(localStorage.getItem("itemdetails")) || []; ///////////////////////////////////////////////////////////////////
 
 function additem() {
     console.log("hello");

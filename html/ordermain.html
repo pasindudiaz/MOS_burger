@@ -23,6 +23,7 @@
     <div class="card text-center bg-success-subtle p-4 w-auto border-black">
         <div class="card-body">
             <div class="d-flex align-items-center mb-3">
+                <!-- Item name -->
                 <div style="width: 150px;" class="me-3 text-end">Item Name</div>
                 <div class="dropdown w-50">
                     <button class="btn btn-primary dropdown-toggle w-100 text-end" type="button" id="nameBtn"
@@ -33,7 +34,29 @@
                     </ul>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-sm mt-3 p-2 w-25 mb-5" onclick="check()">SEARCH</button>
+            <!-- Order ID -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Order ID</div>
+                <input type="text" class="form-control w-50" id="orderidfield">
+            </div>
+            <!-- Order quantity -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Order Quantity</div>
+                <input type="text" class="form-control w-50" id="orderquantityfield">
+            </div>
+            <!-- Cus ID -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Customer ID</div>
+                <input type="text" class="form-control w-50" id="cusidfield">
+            </div>
+            <!-- Cus name -->
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 150px;" class="me-3 text-end">Customer Name</div>
+                <input type="text" class="form-control w-50" id="cusnamefield">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm mt-3 p-2 w-25 mb-5" onclick="cartProcess()">ADD TO CART
+            </button>
+            <div id="alert"></div>
             <table class="table">
                 <thead>
                     <tr>
@@ -49,28 +72,14 @@
                 <tbody id="tblbody">
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary btn-sm mt-3 p-2 w-25 " onclick="">ADD TO CART</button>
-            <div class="alert alert-primary mt-5" role="alert">
-                <p id="cart">
-                <table class="table">
-                    <tbody id="tblbody">
-                        ADD TO CART 
-                        <!-- <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>                 
-                            <td>@mdo</td>                 
-                            <td>@mdo</td>                 
-                            <td>@mdo</td>                 
-                            <td>@mdo</td>                 
-                            <td>@mdo</td>                 
-                        </tr> -->
-                    </tbody>
-                </table>
-                </p>
+            <div class="d-flex align-items-center ">
+                <input type="text" class="form-control w-50" id="finaldiscountfield" placeholder="Add final discount">
+                <button type="button" class="btn btn-primary btn-sm mt-5 ms-3 p-2 mb-5 me-5 w-25"
+                    onclick="adddiscount()">ADD</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm mt-3 p-2 w-25"
-                onclick="goToPage('ordersub.html')">NEXT</button>
+            <div>
+                <input type="text" class="form-control w-50" id="finalamountfield" placeholder="Final amount">
+            </div>
         </div>
     </div>
 

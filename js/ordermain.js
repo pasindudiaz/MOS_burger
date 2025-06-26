@@ -25,22 +25,62 @@ function selectname(name) {
     document.getElementById("nameBtn").innerText = name;
 }
 
+
+let orderdetails = [];
+let itemdetails = [];
 let body = ``;
-function check(){
-    let view = JSON.parse(localStorage.getItem("itemdetails"));
-    view.forEach(element => {
-        let need = document.getElementById("nameBtn").innerText
-        if(need==element.itemname){
-        body = body + `<tr>
-            <td>${element.itemcode}</td>
-            <td>${element.itemcategory}</td>
-            <td>${element.itemname}</td>
-            <td>${element.itemquantity}</td>
-            <td>${element.itemprice}</td>
-            <td>${element.itemdiscount}</td>
-            <td>${element.itemexpire}</td>
-        </tr >`
+function cartProcess() {
+    let name = document.getElementById("nameBtn").innerText
+    let quantity = document.getElementById("orderquantityfield").value
+    let orderid = document.getElementById("orderidfield").value
+    let cusid = document.getElementById("cusidfield").value
+    let cusname = document.getElementById("cusnamefield").value
+    itemdetails = JSON.parse(localStorage.getItem("itemdetails"));
+    console.log(name, quantity, orderid, cusid, cusname);
+    itemdetails.forEach(element => {
+        if (element.itemname == name && element.itemquantity >= quantity) {
+            console.log("innerif");
+            body = body + `<tr>
+                        <td>${element.itemcode}</td>
+                        <td>${element.itemcategory}</td>
+                        <td>${element.itemname}</td>
+                        <td>${quantity}</td>
+                        <td>${element.itemprice}</td>
+                        <td>${element.itemdiscount}</td>
+                        <td>${element.itemexpire}</td>
+                    </tr >`
+            element.itemquantity = element.itemquantity - quantity;
+            console.log(itemdetails);
+
+            orderdetails.push({ itemcode: element.itemcode, itemcategory: element.itemcategory, itemname: name, itemquantity: quantity, itemorderid: orderid, itemcusid: cusid, itemcusname: cusname });
+            console.log(orderdetails);
+
         }
         document.getElementById("tblbody").innerHTML = body;
+        localStorage.setItem("itemdetails", JSON.stringify(itemdetails));
+        localStorage.setItem("orderdetails", JSON.stringify(orderdetails));
     });
 }
+
+function adddiscount() {
+    console.log("added");
+    let orderdetails = [];
+    orderdetails = JSON.parse(localStorage.getItem("orderdetails"));
+    let orderid = document.getElementById("orderidfield").value;
+    let finaldiscount = document.getElementById("finaldiscountfield").value;
+    orderdetails.forEach(element => {
+        if (orderid == element.itemorderid) {
+            console.log("innerif");
+            element.itemfinaldiscount = finaldiscount;
+        }
+    });
+    console.log(orderdetails);
+    localStorage.setItem("orderdetails", JSON.stringify(orderdetails));
+
+    // let orderdetails2 = [];
+    // orderdetails2 = JSON.parse(localStorage.getItem("orderdetails"));
+
+
+
+}
+
