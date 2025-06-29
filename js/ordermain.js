@@ -52,7 +52,7 @@ function cartProcess() {
             element.itemquantity = element.itemquantity - quantity;
             console.log(itemdetails);
 
-            orderdetails.push({ itemcode: element.itemcode, itemcategory: element.itemcategory, itemname: name, itemquantity: quantity, itemorderid: orderid, itemcusid: cusid, itemcusname: cusname });
+            orderdetails.push({ itemcode: element.itemcode, itemcategory: element.itemcategory, itemname: name, itemquantity: quantity, itemorderid: orderid, itemcusid: cusid, itemcusname: cusname, itemdiscount: element.itemdiscount, itemprice: element.itemprice });
             console.log(orderdetails);
 
         }
@@ -76,11 +76,36 @@ function adddiscount() {
     });
     console.log(orderdetails);
     localStorage.setItem("orderdetails", JSON.stringify(orderdetails));
-
-    // let orderdetails2 = [];
-    // orderdetails2 = JSON.parse(localStorage.getItem("orderdetails"));
-
-
-
+    finalAmountCal();
 }
+
+function finalAmountCal() {
+    console.log("final");
+    let orderdetails = [];
+    orderdetails = JSON.parse(localStorage.getItem("orderdetails"));
+    let orderid = document.getElementById("orderidfield").value;
+    let itemTotAfterDis = 0;
+    let finalDiscount = 0;
+    console.log(orderid);
+    console.log(orderdetails);
+    orderdetails.forEach(element => {
+        console.log(element.itemprice);
+        console.log(element.itemquantity);
+        if (element.itemorderid == orderid) {
+            itemTotAfterDis = itemTotAfterDis + (element.itemprice - (element.itemprice * (element.itemdiscount / 100))) * element.itemquantity;
+            finalDiscount = element.itemfinaldiscount;
+        }
+    });
+    console.log(itemTotAfterDis - itemTotAfterDis * (finalDiscount / 100));
+    let pay = itemTotAfterDis - itemTotAfterDis * (finalDiscount / 100);
+    orderdetails.forEach(element => {
+        if (element.itemorderid == orderid) {
+        element.itemfinalamout=pay;
+        }
+    });
+    console.log(orderdetails);
+    document.getElementById("finalamountfield").value=pay;
+    localStorage.setItem("orderdetails", JSON.stringify(orderdetails));
+}
+
 
